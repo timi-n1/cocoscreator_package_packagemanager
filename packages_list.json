@@ -3,8 +3,6 @@
         "name": "AtlasManager",
         "path": "atlas-manager",
         "desc": "合图工具",
-        "gitname": "timi-n1/cocoscreator_package_atlasmanager",
-        "git": "https://github.com/timi-n1/cocoscreator_package_atlasmanager.git",
-        "versionfile": "https://raw.githubusercontent.com/timi-n1/cocoscreator_package_atlasmanager/master/package.json"
+        "gitname": "timi-n1/cocoscreator_package_atlasmanager"
     }
 ]
