@@ -3,22 +3,12 @@
         "name": "AtlasManager",
         "path": "atlas-manager",
         "desc": "合图工具",
-        "gitname": "timi-n1/cocoscreator_package_atlasmanager",
-        "open": "public"
+        "gitname": "timi-n1/cocoscreator_package_atlasmanager"
     },
     {
         "name": "AtlasManager22",
         "path": "atlas-manager22",
         "desc": "合图工具",
-        "gitname": "timi-n1/cocoscreator_package_atlasmanager",
-        "open": "public"
-    },
-    {
-        "name": "Private",
-        "path": "ppppprivate",
-        "desc": "合图工具",
-        "gitname": "",
-        "open": "private",
-        "repo": "https://gitee.com/tg130/test.git"
+        "gitname": "timi-n1/cocoscreator_package_atlasmanager"
     }
 ]
