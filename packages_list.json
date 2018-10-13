@@ -1,7 +1,7 @@
 [
     {
         "name": "AtlasManager",
-        "path": "atlas-manager"
+        "path": "atlas-manager",
         "desc": "合图工具",
         "version": 1.0
     }
