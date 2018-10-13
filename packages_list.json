@@ -4,20 +4,20 @@
         "path": "atlas-manager",
         "desc": "合图工具",
         "gitname": "timi-n1/cocoscreator_package_atlasmanager",
-        "opem": "public"
+        "open": "public"
     },
     {
         "name": "AtlasManager22",
         "path": "atlas-manager22",
         "desc": "合图工具",
         "gitname": "timi-n1/cocoscreator_package_atlasmanager",
-        "opem": "public"
+        "open": "public"
     },
     {
         "name": "Private",
         "path": "ppppprivate",
         "desc": "合图工具",
         "gitname": "timi-n1/cocoscreator_package_atlasmanager",
-        "opem": "private"
+        "open": "private"
     }
 ]
