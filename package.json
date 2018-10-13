@@ -1,0 +1,23 @@
+{
+    "name": "package-all-manager",
+    "version": "0.0.1",
+    "description": "包管理器",
+    "author": "aguangtian",
+    "main": "main.js",
+    "main-menu": {
+        "Packages/包管理器": {
+            "message": "package-all-manager:run"
+        }
+    },
+    "dependencies": {
+        "request": "^2.88.0"
+    },
+    "devDependencies": {},
+    "panel": {
+        "main": "panel/index.js",
+        "type": "dockable",
+        "title": "包管理器",
+        "width": 600,
+        "height": 800
+    }
+}
