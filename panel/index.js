@@ -5,170 +5,180 @@ Editor.Panel.extend({
             display: flex;
             flex-direction: column;
         }
-        .typebox{
-            margin: 4px;
+        .box{
+            display: flex;
         }
-        .typebox .box{
+        span.btn{
+            width: 60px;
+        }
+        span.msg{
+            line-height: 20px;
+            vertical-align: super;
+            font-size: 14px;
             display: inline-block;
-            margin: 0 0 0 2px;
+            flex: 1;
         }
-        .typebox .active{
-            color: #38b5d4;
-            font-weight: bold;
+        input{
             
         }
-        .idlist{
-            overflow-y: scroll;
-        }
-        .idlist .box{
-            display: flex;
-            margin: 1px 0;
-            s
-        }
-        .idlist .box .order{
-            margin: 0;
-            width: 35px;
-            font-size: 14px;
-            display: inline-block;
+        .loading{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            background-color: rgba(0,0,0,0.5);
+            font-size: 30px;
+            color: #FFFFFF;
             text-align: center;
-            line-height: 30px;
-        }
-        .input{
-            background: transparent;
-            padding: 4px 8px;
-            font-size: 14px;
-            flex: 1;
-            border: 1px solid gray;
-            border-radius: 5px;
-            color: white;
-        }
-        .cbtn{
-            width:90px;
+            line-height: 500px;
         }
     `,
     template: `
-        <div class="typebox">
-            <ui-button class="box" :class="{active:type==typeActive}" v-for="(type,item) in eventMap" @click="typeActive=type">{{type}}</ui-button>
-        </div>
         <ui-box-container>
-            <div class="idlist">
-                <div class="box" v-for="(index,id) in eventMap[typeActive]" track-by="$index">
-                    <p class="order">{{index+1}}</p>
-                    <input class="input" v-model="id" placeholder="请输入事件id名称"></input>
-                    <ui-button style="margin: 2px 0 0 4px;" @click="deleteId(index)" class="red">删除</ui-button>
-                </div>
+            <div class="box" v-for="(index,package) in packageList" track-by="$index">
+                <span class="msg" @click="alert(package.desc)">{{index+1}}. {{package.name}} | 本地{{package.localVersion}} | 远程{{package.version}}</span>
+                <span class="btn"><ui-button v-if="!package.localExists" @click="download(index)" class="green small">下载</ui-button></span>
+                <span class="btn"><ui-button v-if="_needUpdate(package)" @click="update(index)" class="green small">更新</ui-button></span>
+                <span class="btn"><ui-button v-if="package.localExists" @click="remove(index)" class="red small">移除</ui-button></span>
             </div>
         </ui-box-container>
         <div style="margin-top: 4px;">
-            <ui-button class="cbtn green" @click="checkAllUpdate">检查更新</ui-button>
-            <ui-button class="cbtn" @click="addId">增加id</ui-button>
-            <ui-button class="cbtn red" @click="delType">删除type</ui-button>
-            <ui-button class="cbtn" @click="addType">增加type</ui-button>
-            <input class="input" style="vertical-align: top;" v-model="addTypeName" placeholder="请输入type名称"></input>
+            <ui-button class="cbtn green" @click="checkAllUpdate">刷新列表</ui-button>
         </div>
+        <div v-show="checking" class="loading">Loading...</div>
     `,
 
     ready() {
 
         const request = require('request');
-        const fs = require('fs');
+        const async = require('async');
+        const fs = require('fs-extra');
+        const spawn = require("child_process").spawn;
         const path = require('path');
-        const resFile = path.resolve(Editor.projectInfo.path, './assets/lib/event-manager.js');
-        const dtsFile = path.resolve(Editor.projectInfo.path, './typings/event-manager.d.ts');
-        const templateFile = path.resolve(Editor.projectInfo.path, './packages/event-manager/template.js');
-        const templateTxt = fs.readFileSync(templateFile, 'utf-8').toString();
+        const proxy = 'http://web-proxy.oa.com:8080';
+        const requestConfig = {
+            'proxy': proxy,
+            'cache-control': 'no-cache'
+        };
 
         new window.Vue({
             el: this.shadowRoot,
             data: {
-                eventMap: {},
-                typeActive: '',
-                addTypeName: ''
+                packageList: [],
+                checking: false
             },
             created() {
+                this.checkAllUpdate();
+            },
+            computed: {
 
-                this.init();
             },
             methods: {
                 checkAllUpdate() {
-                    request('http://www.google.com', function (error, response, body) {
-                        console.log('error:', error); // Print the error if one occurred
-                        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                        console.log('body:', body); // Print the HTML for the Google homepage.
+                    if (this.checking) {
+                        return;
+                    }
+                    this.checking = true;
+                    this._get('https://raw.githubusercontent.com/timi-n1/cocoscreator_package_packagemanager/master/packages_list.json', (body) => {
+                        const list = JSON.parse(body);
+                        console.table(list);
+                        this._parsePackageList(list);
                     });
                 },
-
-
-
-                init() {
-                    if (fs.existsSync(resFile)) {
-                        this.eventMap = require(resFile);
-                        for (let v in this.eventMap) {
-                            this.eventMap[v].sort((a, b) => {
-                                return a.localeCompare(b);
-                            });
-                        }
-                    }
-                    this.defaultSelect();
-                },
-                deleteId(index) {
-                    this.eventMap[this.typeActive].splice(index, 1);
-                },
-                addId() {
-                    this.eventMap[this.typeActive].push('');
-                },
-                addType() {
-                    if (this.addTypeName.length <= 0) {
-                        console.error(this.addTypeName);
-                        return;
-                    }
-                    for (let type in this.eventMap) {
-                        if (type == this.addTypeName) {
-                            alert('重复的type名');
-                            return;
-                        }
-                    }
-                    Vue.set(this.eventMap, this.addTypeName, []);
-                    this.addTypeName = '';
-                },
-                delType() {
-                    Vue.delete(this.eventMap, this.typeActive);
-                    this.defaultSelect();
-                },
-                defaultSelect() {
-                    for (let type in this.eventMap) {
-                        this.typeActive = type;
-                        return;
-                    }
-                },
-                save() {
-                    for (let v in this.eventMap) {
-                        this.eventMap[v].sort((a, b) => {
-                            return a.localeCompare(b);
+                download(index) {
+                    this.checking = true;
+                    const package = this.packageList[index];
+                    const git = spawn('git', ['clone', `https://github.com/${package.gitname}.git`, this._getLocalPath(package)]);
+                    git.on('close', (code) => {
+                        this._refreshPackage(index, ()=>{
+                            this.checking = false;
                         });
-                    }
-                    //js文件
-                    const mapStr = JSON.stringify(this.eventMap, true, 4);
-                    const txt = templateTxt.replace(`'##EventMapHoldPlace##'`, mapStr);
-                    fs.writeFileSync(resFile, txt);
-                    //d.ts文件
-                    let dts = 'declare module cs.Evt {\n';
-                    for (let type in this.eventMap) {
-                        dts += this.getTypeDTS(type);
-                    }
-                    dts += '}\n';
-                    fs.writeFileSync(dtsFile, dts);
-                    alert('成功');
+                        console.log(`child process exited with code ${code}`);
+                    });
                 },
-                getTypeDTS(type) {
-                    let dts = `\texport var ${type}: {\n\t\t`;
-                    const didArr = []
-                    for (let i = 0; i < this.eventMap[type].length; i++) {
-                        didArr.push(this.eventMap[type][i]);
+                remove(index){
+                    const package = this.packageList[index];
+                    fs.removeSync(this._getLocalPath(package));
+                    package.localExists = false;
+                    package.localVersion = '空';
+                },
+                update(index){
+                    const package = this.packageList[index];
+                    fs.removeSync(this._getLocalPath(package));
+                    this.download(index);
+                },
+                alert(msg){
+                    window.alert(msg);
+                },
+                _get(url, done) {
+                    request(url, requestConfig, (error, response, body) => {
+                        if (!error && response && response.statusCode == 200) {
+                            done && done(body);
+                        }
+                        else{
+                            done && done(null);
+                        }
+                    });
+                },
+                _checkPrivate(package, done){
+                    if( package.isPrivate ){
+
                     }
-                    dts += didArr.join(': string,\n\t\t');
-                    dts += ': string\n\t};\n';
-                    return dts;
+                },
+                _parsePackageList(list) {
+                    //https://raw.githubusercontent.com/timi-n1/cocoscreator_package_atlasmanager/master/package.json
+                    async.eachOfSeries(list, (package, index, cb) => {
+                        const local = this._getLocalVersionFilePath(package);
+                        if (fs.existsSync(local)) {
+                            package.localExists = true;
+                            package.localVersion = JSON.parse(fs.readFileSync(local).toString()).version;
+                        }
+                        else {
+                            package.localExists = false;
+                            package.localVersion = '空';
+                        }
+                        //remote
+                        this._get(this._getRemoteVersionFilePath(package), (body) => {
+                            try{
+                                package.version = JSON.parse(body).version;
+                            }
+                            catch(err){}
+                            cb();
+                        });
+                    }, () => {
+                        this.packageList = list;
+                        this.checking = false;
+                    });
+                },
+                _refreshPackage(index, done){
+                    const package = this.packageList[index];
+                    const local = this._getLocalVersionFilePath(package);
+                    if (fs.existsSync(local)) {
+                        package.localExists = true;
+                        package.localVersion = JSON.parse(fs.readFileSync(local).toString()).version;
+                    }
+                    else {
+                        package.localExists = false;
+                        package.localVersion = '空';
+                    }
+                    //remote
+                    this._get(this._getRemoteVersionFilePath(package), (body) => {
+                        package.version = JSON.parse(body).version;
+                        done && done();
+                    });
+                },
+                _needUpdate(package) {
+                    return package.localExists && package.localVersion != package.version;
+                },
+                _getLocalPath(package){
+                    return path.resolve(Editor.projectInfo.path, `./packages/${package.path}`);
+                },
+                _getLocalVersionFilePath(package) {
+                    return path.resolve(Editor.projectInfo.path, `./packages/${package.path}/package.json`);
+                },
+                _getRemoteVersionFilePath(package) {
+                    return `https://raw.githubusercontent.com/${package.gitname}/master/package.json`;
                 }
             }
         });
