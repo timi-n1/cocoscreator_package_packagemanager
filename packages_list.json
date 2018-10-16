@@ -10,5 +10,11 @@
         "path": "const-manager",
         "desc": "常量管理",
         "gitname": "timi-n1/cocoscreator_package_constmanager"
+    },
+    {
+        "name": "DialogManager",
+        "path": "dialog-manager",
+        "desc": "Dialog管理",
+        "gitname": "timi-n1/cocoscreator_package_dialogmanager"
     }
 ]
