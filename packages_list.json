@@ -42,6 +42,12 @@
         "gitname": "timi-n1/cocoscreator_package_ttfmanager"
     },
     {
+        "name": "<平台>微信小游戏",
+        "path": "platform-wechat",
+        "desc": "<平台>微信小游戏",
+        "gitname": "timi-n1/cocoscreator_package_platform_wechat"
+    },
+    {
         "name": "<吸猫日记>专属插件集合",
         "path": "game-cats",
         "desc": "<吸猫日记>专属插件集合",
