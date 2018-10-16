@@ -48,6 +48,12 @@
         "gitname": "timi-n1/cocoscreator_package_platform_wechat"
     },
     {
+        "name": "<平台>Web",
+        "path": "platform-web",
+        "desc": "<平台>Web",
+        "gitname": "timi-n1/cocoscreator_package_platform_web"
+    },
+    {
         "name": "<吸猫日记>专属插件集合",
         "path": "game-cats",
         "desc": "<吸猫日记>专属插件集合",
