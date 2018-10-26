@@ -1,6 +1,6 @@
 [
     {
-        "name": "ConstManager",
+        "name": "常量Manager",
         "path": "const-manager",
         "desc": "常量管理",
         "gitname": "timi-n1/cocoscreator_package_constmanager"
