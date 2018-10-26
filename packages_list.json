@@ -6,6 +6,12 @@
         "gitname": "timi-n1/cocoscreator_package_constmanager"
     },
     {
+        "name": "<平台>微信小游戏(1.9.x)",
+        "path": "platform-wechat",
+        "desc": "<平台>微信小游戏",
+        "gitname": "timi-n1/cocoscreator_package_platform_wechat"
+    },
+    {
         "name": "<平台>Web",
         "path": "platform-web",
         "desc": "<平台>Web",
