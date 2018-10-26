@@ -12,6 +12,12 @@
         "gitname": "timi-n1/cocoscreator_package_dialogmanager"
     },
     {
+        "name": "事件Manager",
+        "path": "event-manager",
+        "desc": "事件管理",
+        "gitname": "timi-n1/cocoscreator_package_eventmanager"
+    },
+    {
         "name": "<平台>微信小游戏(for1.9.x)",
         "path": "platform-wechat",
         "desc": "<平台>微信小游戏",

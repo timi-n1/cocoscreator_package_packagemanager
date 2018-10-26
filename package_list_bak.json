@@ -6,12 +6,6 @@
         "gitname": "timi-n1/cocoscreator_package_atlasmanager"
     },
     {
-        "name": "EventManager",
-        "path": "event-manager",
-        "desc": "事件管理",
-        "gitname": "timi-n1/cocoscreator_package_eventmanager"
-    },
-    {
         "name": "LayerManager",
         "path": "layer-manager",
         "desc": "Layer管理",
