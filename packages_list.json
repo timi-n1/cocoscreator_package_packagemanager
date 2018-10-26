@@ -6,21 +6,27 @@
         "gitname": "timi-n1/cocoscreator_package_constmanager"
     },
     {
-        "name": "<平台>微信小游戏(1.9.x)",
+        "name": "DialogManager",
+        "path": "dialog-manager",
+        "desc": "Dialog管理",
+        "gitname": "timi-n1/cocoscreator_package_dialogmanager"
+    },
+    {
+        "name": "<平台>微信小游戏(for1.9.x)",
         "path": "platform-wechat",
         "desc": "<平台>微信小游戏",
         "gitname": "timi-n1/cocoscreator_package_platform_wechat"
     },
     {
-        "name": "<平台>Web",
+        "name": "<平台>WebHtml5",
         "path": "platform-web",
         "desc": "<平台>Web",
         "gitname": "timi-n1/cocoscreator_package_platform_web"
     },
     {
-        "name": "<风尚小馆>专属插件集合",
+        "name": "<风味小馆>专属插件合集",
         "path": "game-restaurant",
-        "desc": "<风尚小馆>专属插件集合",
+        "desc": "<风尚小馆>专属插件合集",
         "gitname": "timi-n1/cocoscreator_package_game_restaurant"
     }
 ]
