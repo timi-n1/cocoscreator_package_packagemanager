@@ -36,11 +36,18 @@ Editor.Panel.extend({
     `,
     template: `
         <ui-box-container>
+            <span>使用代理:</span>
+            <ui-select class="fill" :value="proxy" v-on:change="onChangeProxy($event)">
+                <option value="">无</option>
+                <option value="http://web-proxy.oa.com:8080">http://web-proxy.oa.com:8080</option>
+            </ui-select>
+        </ui-box-container>
+        <ui-box-container>
             <div class="box" v-for="(index,package) in packageList" track-by="$index">
                 <span class="msg" @click="alert(package.desc)">{{index+1}}. {{package.name}} | 本地{{package.localVersion}} | 远程{{package.version}}</span>
-                <span class="btn"><ui-button v-if="!package.localExists" @click="download(index)" class="green small">下载</ui-button></span>
-                <span class="btn"><ui-button v-if="_needUpdate(package)" @click="update(index)" class="green small">更新</ui-button></span>
-                <span class="btn"><ui-button v-if="package.localExists" @click="remove(index)" class="red small">移除</ui-button></span>
+                <span class="btn" v-if="!package.localExists"><ui-button @click="download(index)" class="green small">下载</ui-button></span>
+                <span class="btn" v-if="_needUpdate(package)"><ui-button @click="download(index)" class="green small">更新</ui-button></span>
+                <span class="btn" v-if="package.localExists"><ui-button @click="remove(index)" class="red small">移除</ui-button></span>
             </div>
         </ui-box-container>
         <div style="margin-top: 4px;">
@@ -56,6 +63,7 @@ Editor.Panel.extend({
         const fs = require('fs-extra');
         const spawn = require("child_process").spawn;
         const path = require('path');
+        const os = require('os');
         const proxy = 'http://web-proxy.oa.com:8080';
         const requestConfig = {
             'proxy': proxy,
@@ -66,7 +74,8 @@ Editor.Panel.extend({
             el: this.shadowRoot,
             data: {
                 packageList: [],
-                checking: false
+                checking: false,
+                proxy: 'http://web-proxy.oa.com:8080'
             },
             created() {
                 this.checkAllUpdate();
@@ -75,6 +84,10 @@ Editor.Panel.extend({
 
             },
             methods: {
+                onChangeProxy(evt){
+                    this.proxy = evt.detail.value;
+                    requestConfig.proxy = this.proxy;
+                },
                 checkAllUpdate() {
                     if (this.checking) {
                         return;
@@ -89,8 +102,10 @@ Editor.Panel.extend({
                 download(index) {
                     this.checking = true;
                     const package = this.packageList[index];
-                    const git = spawn('git', ['clone', `https://github.com/${package.gitname}.git`, this._getLocalPath(package)]);
+                    const tempdir = path.resolve( os.tmpdir(), `${package.path}_${Date.now()}` );
+                    const git = spawn('git', ['clone', `https://github.com/${package.gitname}.git`, tempdir]);
                     git.on('close', (code) => {
+                        fs.copySync(tempdir, this._getLocalPath(package));
                         this._refreshPackage(index, ()=>{
                             this.checking = false;
                         });
@@ -103,11 +118,11 @@ Editor.Panel.extend({
                     package.localExists = false;
                     package.localVersion = '空';
                 },
-                update(index){
-                    const package = this.packageList[index];
-                    fs.removeSync(this._getLocalPath(package));
-                    this.download(index);
-                },
+                // update(index){
+                //     const package = this.packageList[index];
+                //     fs.removeSync(this._getLocalPath(package));
+                //     this.download(index);
+                // },
                 alert(msg){
                     window.alert(msg);
                 },
