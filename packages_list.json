@@ -1,68 +1,8 @@
 [
     {
-        "name": "AtlasManager",
-        "path": "atlas-manager",
-        "desc": "合图工具, 直通/预乘/RGB-Alpha分离",
-        "gitname": "timi-n1/cocoscreator_package_atlasmanager"
-    },
-    {
         "name": "ConstManager",
         "path": "const-manager",
         "desc": "常量管理",
         "gitname": "timi-n1/cocoscreator_package_constmanager"
-    },
-    {
-        "name": "DialogManager",
-        "path": "dialog-manager",
-        "desc": "Dialog管理",
-        "gitname": "timi-n1/cocoscreator_package_dialogmanager"
-    },
-    {
-        "name": "EventManager",
-        "path": "event-manager",
-        "desc": "事件管理",
-        "gitname": "timi-n1/cocoscreator_package_eventmanager"
-    },
-    {
-        "name": "LayerManager",
-        "path": "layer-manager",
-        "desc": "Layer管理",
-        "gitname": "timi-n1/cocoscreator_package_layermanager"
-    },
-    {
-        "name": "场景及其依赖Manager",
-        "path": "resource-manager",
-        "desc": "场景及其依赖管理",
-        "gitname": "timi-n1/cocoscreator_package_resourcemanager"
-    },
-    {
-        "name": "TTFFontManager",
-        "path": "ttf-manager",
-        "desc": "TTF字体管理",
-        "gitname": "timi-n1/cocoscreator_package_ttfmanager"
-    },
-    {
-        "name": "<平台>微信小游戏",
-        "path": "platform-wechat",
-        "desc": "<平台>微信小游戏",
-        "gitname": "timi-n1/cocoscreator_package_platform_wechat"
-    },
-    {
-        "name": "<平台>Web",
-        "path": "platform-web",
-        "desc": "<平台>Web",
-        "gitname": "timi-n1/cocoscreator_package_platform_web"
-    },
-    {
-        "name": "<吸猫日记>专属插件集合",
-        "path": "game-cats",
-        "desc": "<吸猫日记>专属插件集合",
-        "gitname": "timi-n1/cocoscreator_package_game_cat"
-    },
-    {
-        "name": "<风尚小馆>专属插件集合",
-        "path": "game-restaurant",
-        "desc": "<风尚小馆>专属插件集合",
-        "gitname": "timi-n1/cocoscreator_package_game_restaurant"
     }
 ]
