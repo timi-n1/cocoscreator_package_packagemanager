@@ -1,11 +1,5 @@
 [
     {
-        "name": "AtlasManager",
-        "path": "atlas-manager",
-        "desc": "合图工具, 直通/预乘/RGB-Alpha分离",
-        "gitname": "timi-n1/cocoscreator_package_atlasmanager"
-    },
-    {
         "name": "场景及其依赖Manager",
         "path": "resource-manager",
         "desc": "场景及其依赖管理",
