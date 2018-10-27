@@ -60,6 +60,12 @@
         "gitname": "timi-n1/cocoscreator_package_platform_web"
     },
     {
+        "name": "<吸猫日记>专属插件合集",
+        "path": "game-cats",
+        "desc": "<吸猫日记>专属插件合集",
+        "gitname": "timi-n1/cocoscreator_package_game_cat"
+    },
+    {
         "name": "<风味小馆>专属插件合集",
         "path": "game-restaurant",
         "desc": "<风尚小馆>专属插件合集",
