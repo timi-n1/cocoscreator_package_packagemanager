@@ -6,12 +6,6 @@
         "gitname": "timi-n1/cocoscreator_package_atlasmanager"
     },
     {
-        "name": "LayerManager",
-        "path": "layer-manager",
-        "desc": "Layer管理",
-        "gitname": "timi-n1/cocoscreator_package_layermanager"
-    },
-    {
         "name": "场景及其依赖Manager",
         "path": "resource-manager",
         "desc": "场景及其依赖管理",
