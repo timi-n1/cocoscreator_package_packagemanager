@@ -42,6 +42,12 @@
         "gitname": "timi-n1/cocoscreator_package_ttfmanager"
     },
     {
+        "name": "SSDManager",
+        "path": "ssd-manager",
+        "desc": "Scene, Screen, Dialog管理器",
+        "gitname": "timi-n1/cocoscreator_package_ssdmanager"
+    },
+    {
         "name": "<平台>微信小游戏(for1.9.x)",
         "path": "platform-wechat",
         "desc": "<平台>微信小游戏",
