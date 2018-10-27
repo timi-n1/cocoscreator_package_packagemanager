@@ -27,11 +27,13 @@ Editor.Panel.extend({
             height: 100%;
             top: 0px;
             left: 0px;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
             font-size: 30px;
             color: #FFFFFF;
             text-align: center;
-            line-height: 500px;
+        }
+        .loading ui-button{
+            margin-top: 300px;
         }
     `,
     template: `
@@ -53,7 +55,9 @@ Editor.Panel.extend({
         <div style="margin-top: 4px;">
             <ui-button class="cbtn green" @click="checkAllUpdate">刷新列表</ui-button>
         </div>
-        <div v-show="checking" class="loading">Loading...</div>
+        <div v-show="checking" class="loading">
+            <ui-button class="cbtn red" @click="destroyRequest">数据加载中, 点击终止网络请求...</ui-button>
+        </div>
     `,
 
     ready() {
@@ -67,7 +71,8 @@ Editor.Panel.extend({
         const proxy = 'http://web-proxy.oa.com:8080';
         const requestConfig = {
             'proxy': proxy,
-            'cache-control': 'no-cache'
+            'cache-control': 'no-cache',
+            'timeout': 8000
         };
 
         new window.Vue({
@@ -75,7 +80,8 @@ Editor.Panel.extend({
             data: {
                 packageList: [],
                 checking: false,
-                proxy: 'http://web-proxy.oa.com:8080'
+                proxy: 'http://web-proxy.oa.com:8080',
+                req: null
             },
             created() {
                 this.checkAllUpdate();
@@ -126,8 +132,11 @@ Editor.Panel.extend({
                 alert(msg){
                     window.alert(msg);
                 },
+                destroyRequest(){
+                    this.req && this.req.destroy();
+                },
                 _get(url, done) {
-                    request(url, requestConfig, (error, response, body) => {
+                    this.req = request(url, requestConfig, (error, response, body) => {
                         if (!error && response && response.statusCode == 200) {
                             done && done(body);
                         }

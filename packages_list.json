@@ -64,5 +64,11 @@
         "path": "game-restaurant",
         "desc": "<风尚小馆>专属插件合集",
         "gitname": "timi-n1/cocoscreator_package_game_restaurant"
+    },
+    {
+        "name": "包管理器",
+        "path": "package-manager",
+        "desc": "包管理器",
+        "gitname": "timi-n1/cocoscreator_package_packagemanager"
     }
 ]
