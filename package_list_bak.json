@@ -1,17 +1,5 @@
 [
     {
-        "name": "场景及其依赖Manager",
-        "path": "resource-manager",
-        "desc": "场景及其依赖管理",
-        "gitname": "timi-n1/cocoscreator_package_resourcemanager"
-    },
-    {
-        "name": "TTFFontManager",
-        "path": "ttf-manager",
-        "desc": "TTF字体管理",
-        "gitname": "timi-n1/cocoscreator_package_ttfmanager"
-    },
-    {
         "name": "<吸猫日记>专属插件集合",
         "path": "game-cats",
         "desc": "<吸猫日记>专属插件集合",
