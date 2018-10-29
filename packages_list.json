@@ -66,6 +66,12 @@
         "gitname": "timi-n1/cocoscreator_package_qrcodemanager"
     },
     {
+        "name": "<子域>协议Manager",
+        "path": "subcontext-manager",
+        "desc": "子域协议管理器",
+        "gitname": "timi-n1/cocoscreator_package_subcontextmanager"
+    },
+    {
         "name": "<平台>微信小游戏(for1.9.x)",
         "path": "platform-wechat",
         "desc": "<平台>微信小游戏",
