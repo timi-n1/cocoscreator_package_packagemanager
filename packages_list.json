@@ -48,6 +48,12 @@
         "gitname": "timi-n1/cocoscreator_package_ttfmanager"
     },
     {
+        "name": "TodoManager",
+        "path": "todo-manager",
+        "desc": "Todo",
+        "gitname": "timi-n1/cocoscreator_package_todomanager"
+    },
+    {
         "name": "SSDManager",
         "path": "ssd-manager",
         "desc": "Scene, Screen, Dialog管理器",
