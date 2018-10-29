@@ -54,6 +54,12 @@
         "gitname": "timi-n1/cocoscreator_package_ssdmanager"
     },
     {
+        "name": "QRCodeManager",
+        "path": "qrcode-manager",
+        "desc": "二维码管理器",
+        "gitname": "timi-n1/cocoscreator_package_qrcodemanager"
+    },
+    {
         "name": "<平台>微信小游戏(for1.9.x)",
         "path": "platform-wechat",
         "desc": "<平台>微信小游戏",
