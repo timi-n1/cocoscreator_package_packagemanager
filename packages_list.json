@@ -72,6 +72,12 @@
         "gitname": "timi-n1/cocoscreator_package_subcontextmanager"
     },
     {
+        "name": "<子域>区域Manager",
+        "path": "subplist-manager",
+        "desc": "子域区域管理器",
+        "gitname": "timi-n1/cocoscreator_package_subplistmanager"
+    },
+    {
         "name": "<平台>微信小游戏(for1.9.x)",
         "path": "platform-wechat",
         "desc": "<平台>微信小游戏",
