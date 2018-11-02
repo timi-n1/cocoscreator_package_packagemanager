@@ -1,6 +1,6 @@
 {
     "name": "package-all-manager",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "包管理器",
     "author": "aguangtian",
     "main": "main.js",

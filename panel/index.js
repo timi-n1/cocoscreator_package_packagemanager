@@ -62,6 +62,7 @@ Editor.Panel.extend({
 
     ready() {
 
+        const thisProjectPath = Editor.projectInfo ? Editor.projectInfo.path : Editor.Project.path;
         const request = require('request');
         const async = require('async');
         const fs = require('fs-extra');
@@ -196,10 +197,10 @@ Editor.Panel.extend({
                     return package.localExists && package.localVersion != package.version;
                 },
                 _getLocalPath(package){
-                    return path.resolve(Editor.projectInfo.path, `./packages/${package.path}`);
+                    return path.resolve(thisProjectPath, `./packages/${package.path}`);
                 },
                 _getLocalVersionFilePath(package) {
-                    return path.resolve(Editor.projectInfo.path, `./packages/${package.path}/package.json`);
+                    return path.resolve(thisProjectPath, `./packages/${package.path}/package.json`);
                 },
                 _getRemoteVersionFilePath(package) {
                     return `https://raw.githubusercontent.com/${package.gitname}/master/package.json`;
