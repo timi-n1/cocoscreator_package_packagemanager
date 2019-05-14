@@ -25,7 +25,7 @@
     },
     {
         "name": "ScreenManager - 2.x",
-        "path": "screen-manager",
+        "path": "screen-manager-2",
         "desc": "Screen管理",
         "gitname": "timi-n1/cocoscreator_package_screenmanager2"
     },
