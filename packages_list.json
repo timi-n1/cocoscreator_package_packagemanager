@@ -18,10 +18,16 @@
         "gitname": "timi-n1/cocoscreator_package_constmanager"
     },
     {
-        "name": "ScreenManager",
+        "name": "ScreenManager - 1.9.x",
         "path": "screen-manager",
         "desc": "Screen管理",
         "gitname": "timi-n1/cocoscreator_package_screenmanager"
+    },
+    {
+        "name": "ScreenManager - 2.x",
+        "path": "screen-manager",
+        "desc": "Screen管理",
+        "gitname": "timi-n1/cocoscreator_package_screenmanager2"
     },
     {
         "name": "DialogManager",
