@@ -30,10 +30,16 @@
         "gitname": "timi-n1/cocoscreator_package_screenmanager2"
     },
     {
-        "name": "DialogManager",
+        "name": "DialogManager - 1.9.x",
         "path": "dialog-manager",
         "desc": "Dialog管理",
         "gitname": "timi-n1/cocoscreator_package_dialogmanager"
+    },
+    {
+        "name": "DialogManager - 2.x",
+        "path": "dialog-manager-2",
+        "desc": "Dialog管理",
+        "gitname": "timi-n1/cocoscreator_package_dialogmanager2"
     },
     {
         "name": "事件Manager",
